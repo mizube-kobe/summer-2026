@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>mizube 夏期講習 2026 ｜ 7/21–8/29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  /* =========================================================
+     Modern Oasis Brand System 準拠
+     Evergreen #005A32 / Mustard #F2BE1A を主役
+     Flat / Geometric / Modular grid / 強い余白 / 特大数字
+     グラデ・グラス・3D・過剰装飾は禁止
+     ========================================================= */
+  :root{
+    --ink:#111111;
+    --ink2:#666666;
+    --white:#FFFFFF;
+    --evergreen:#005A32;
+    --mustard:#F2BE1A;
+    --mint:#D8E9D7;
+    --red:#E61E24;
+    --cream:#F7F5F0;
+    --warmgray:#D9D4CC;
+    --black:#1A1A1A;
+    --en:'Archivo',sans-serif;
+    --jp:'Zen Kaku Gothic New',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--jp);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* 12カラム想定の広いマージン */
+  .wrap{max-width:1040px;margin:0 auto;padding:0 7vw;}
+  .wrap-narrow{max-width:760px;margin:0 auto;padding:0 7vw;}
+
+  .rv{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
+  .rv.in{opacity:1;transform:none;}
+
+  /* 特大セクション番号 */
+  .secnum{
+    font-family:var(--en);font-weight:900;font-size:clamp(64px,14vw,150px);
+    line-height:.82;letter-spacing:-.04em;color:var(--evergreen);
+  }
+  .secnum.mustard{color:var(--mustard);}
+  .label{
+    font-family:var(--en);font-weight:600;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink2);
+  }
+  .divider{height:2px;background:var(--ink);border:none;width:100%;}
+
+  /* ---------- NAV ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;background:var(--cream);
+    border-bottom:2px solid var(--ink);
+  }
+  .topbar .row{max-width:1080px;margin:0 auto;padding:14px 6vw;display:flex;justify-content:space-between;align-items:center;}
+  .brandmark{font-family:var(--en);font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--evergreen);}
+  .brandmark .dot{color:var(--mustard);}
+  .topbar .nav{font-family:var(--en);font-weight:500;font-size:11px;letter-spacing:.2em;color:var(--ink2);text-transform:uppercase;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:150px 0 90px;position:relative;}
+  .hero .grid{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:end;}
+  .hero .eyebrow{font-family:var(--en);font-weight:700;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--evergreen);}
+  .hero h1{font-family:var(--jp);font-weight:900;font-size:clamp(34px,6.2vw,62px);line-height:1.28;letter-spacing:-.01em;margin-top:20px;}
+  .hero h1 .hl{background:var(--mustard);padding:0 10px;}
+  .hero .lead{font-size:15px;color:var(--ink2);line-height:2;margin-top:26px;max-width:460px;}
+  .hero .tags{margin-top:28px;display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{font-family:var(--jp);font-weight:700;font-size:12px;letter-spacing:.04em;padding:7px 13px;border:1.5px solid var(--ink);border-radius:0;}
+  .tag.fill{background:var(--evergreen);color:var(--white);border-color:var(--evergreen);}
+  /* 事実ボード（HERO右） */
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);border:2px solid var(--ink);background:var(--white);}
+  .fact{padding:22px 22px 20px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);min-height:138px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;}
+  .fact:nth-child(2n){border-right:none;}
+  .fact:nth-child(n+3){border-bottom:none;}
+  .fact .lbl{font-family:var(--en);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink2);}
+  .fact .big{font-family:var(--en);font-weight:900;font-size:clamp(26px,3.6vw,38px);line-height:1;letter-spacing:-.02em;color:var(--ink);}
+  .fact .big .sep{display:inline-block;margin:0 6px;font-weight:700;color:var(--ink2);}
+  .fact .big .unit{font-family:var(--jp);font-weight:800;font-size:.55em;margin-left:4px;color:var(--ink2);letter-spacing:0;}
+  .fact .sub{font-size:11.5px;color:var(--ink2);line-height:1.5;}
+  .fact.term .big{color:var(--evergreen);}
+  .fact.cta{background:var(--mustard);}
+  .fact.cta .lbl,.fact.cta .big,.fact.cta .sub{color:var(--ink);}
+  .fact.cta .big{font-family:var(--jp);font-weight:900;font-size:clamp(22px,3vw,28px);}
+  @media(max-width:760px){
+    .hero{padding:130px 0 70px;}
+    .hero .grid{grid-template-columns:1fr;gap:36px;}
+    .fact{min-height:118px;}
+  }
+
+  /* ---------- SECTION shell ---------- */
+  section.block{padding:110px 0;border-top:2px solid var(--ink);}
+  .sechead{display:flex;align-items:flex-start;gap:32px;margin-bottom:64px;}
+  .sechead .meta{padding-top:8px;}
+  .sechead h2{font-family:var(--jp);font-weight:900;font-size:clamp(22px,4.6vw,34px);line-height:1.4;margin-top:6px;}
+  .sechead p{font-size:14.5px;color:var(--ink2);line-height:2;margin-top:18px;max-width:480px;}
+  @media(max-width:680px){
+    section.block{padding:80px 0;}
+    .sechead{margin-bottom:48px;gap:20px;}
+  }
+
+  /* ---------- 悩み ---------- */
+  .worry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--ink);background:var(--white);}
+  .worry-cell{padding:38px 28px 32px;border-right:2px solid var(--ink);min-height:220px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;}
+  .worry-cell:last-child{border-right:none;}
+  .worry-cell .n{font-family:var(--en);font-weight:700;font-size:10.5px;color:var(--ink2);letter-spacing:.22em;text-transform:uppercase;}
+  .worry-cell .t{font-family:var(--jp);font-weight:700;font-size:clamp(15px,1.9vw,17px);line-height:1.75;color:var(--ink);}
+  .worry-cell .t em{font-style:normal;background:var(--mustard);padding:0 4px;}
+  @media(max-width:680px){
+    .worry-grid{grid-template-columns:1fr;}
+    .worry-cell{border-right:none;border-bottom:2px solid var(--ink);min-height:0;padding:32px 26px;}
+    .worry-cell:last-child{border-bottom:none;}
+  }
+
+  /* ---------- ethos（mizubeの夏とは・番号なしインタールード） ---------- */
+  .ethos{padding:130px 0 140px;border-top:2px solid var(--ink);background:var(--mint);}
+  .ethos .lbl{font-family:var(--en);font-weight:700;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--evergreen);}
+  .ethos-quote{font-family:var(--jp);font-weight:900;font-size:clamp(26px,4.6vw,44px);line-height:1.5;letter-spacing:-.005em;color:var(--evergreen);margin:28px 0 0;max-width:760px;}
+  .ethos-lead{font-size:15px;color:var(--ink);line-height:2.05;max-width:520px;margin-top:36px;}
+  .ethos-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:56px;margin-top:96px;}
+  .pillar .p-lbl{font-family:var(--en);font-weight:800;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--evergreen);display:block;border-top:2px solid var(--evergreen);padding-top:18px;margin-bottom:16px;}
+  .pillar p{font-family:var(--jp);font-weight:700;font-size:15px;line-height:1.9;color:var(--ink);}
+  @media(max-width:760px){
+    .ethos{padding:90px 0 100px;}
+    .ethos-pillars{grid-template-columns:1fr;gap:36px;margin-top:64px;}
+  }
+
+  /* ---------- コース（モジュラーグリッド） ---------- */
+  .course{
+    display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:start;
+    border:2px solid var(--ink);padding:48px 44px;margin-bottom:-2px;background:var(--white);
+    transition:background .35s ease;
+  }
+  .course:hover{background:var(--mint);}
+  .course .cnum{font-family:var(--en);font-weight:900;font-size:clamp(48px,8vw,84px);line-height:.8;letter-spacing:-.04em;color:var(--evergreen);}
+  .course.k2 .cnum{color:var(--mustard);}
+  .course.k3 .cnum{color:var(--ink);}
+  .course .body{min-width:0;}
+  .course .for{display:inline-block;font-family:var(--jp);font-weight:700;font-size:13px;background:var(--mustard);color:var(--ink);padding:5px 12px;margin-bottom:18px;}
+  .course.k1 .for{background:var(--mint);}
+  .course.k3 .for{background:var(--warmgray);}
+  .course h3{font-family:var(--jp);font-weight:900;font-size:clamp(20px,3vw,26px);margin-bottom:6px;line-height:1.4;}
+  .course .grade{font-family:var(--en);font-weight:600;font-size:12px;letter-spacing:.14em;color:var(--ink2);text-transform:uppercase;margin-bottom:26px;}
+  .course .row{display:flex;gap:16px;font-size:14px;padding:11px 0;border-top:1px solid var(--warmgray);line-height:1.75;}
+  .course .row:first-of-type{border-top:none;padding-top:0;}
+  .course .row .lbl{font-family:var(--en);font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--evergreen);min-width:58px;padding-top:4px;}
+  .course .price{font-family:var(--en);font-weight:800;font-size:clamp(18px,2.4vw,22px);color:var(--ink);white-space:nowrap;text-align:right;}
+  .course .price small{display:block;font-family:var(--jp);font-weight:500;font-size:11px;color:var(--ink2);letter-spacing:0;margin-top:4px;}
+  .course .note{grid-column:2/4;font-size:13.5px;color:var(--ink2);border-top:1px solid var(--warmgray);margin-top:22px;padding-top:18px;line-height:1.85;}
+  .course .jhs3-note{grid-column:2/4;border-top:none;margin-top:10px;padding:0 0 0 14px;border-left:3px solid var(--evergreen);color:var(--ink);font-weight:700;font-size:13.5px;}
+  /* ① 3パック表示 */
+  .course .row.packs{flex-direction:column;align-items:stretch;gap:12px;}
+  .pack-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .pack{border:1.5px solid var(--ink);padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:var(--cream);}
+  .pack-n{font-family:var(--en);font-weight:800;font-size:10px;letter-spacing:.22em;color:var(--evergreen);text-transform:uppercase;}
+  .pack-d{font-family:var(--en);font-weight:700;font-size:14px;letter-spacing:.02em;color:var(--ink);}
+  @media(max-width:680px){
+    .course{grid-template-columns:1fr;gap:18px;padding:38px 28px;}
+    .course .price{text-align:left;}
+    .course .note,.course .jhs3-note{grid-column:1;}
+    .pack-list{grid-template-columns:1fr;}
+  }
+
+  /* ---------- 選び方（テーブル状モジュール） ---------- */
+  .guide{border:2px solid var(--ink);background:var(--white);}
+  .guide .g{display:grid;grid-template-columns:140px 1fr;border-top:2px solid var(--ink);}
+  .guide .g:first-child{border-top:none;}
+  .guide .g b{font-family:var(--en);font-weight:800;font-size:15px;background:var(--evergreen);color:var(--white);padding:26px 22px;letter-spacing:.04em;display:flex;align-items:center;}
+  .guide .g span{padding:26px 30px;font-size:14px;line-height:1.85;display:flex;align-items:center;}
+
+  /* ---------- CTA ---------- */
+  .cta{border-top:2px solid var(--ink);background:var(--evergreen);color:var(--white);padding:110px 0;}
+  .cta .wrap{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+  .cta h2{font-family:var(--jp);font-weight:900;font-size:clamp(22px,4vw,34px);line-height:1.45;}
+  .cta h2 .hl{background:var(--mustard);color:var(--ink);padding:0 8px;}
+  .cta .sub{font-size:14px;opacity:.85;margin-top:16px;}
+  .btn{display:inline-block;background:var(--mustard);color:var(--ink);font-family:var(--jp);font-weight:900;font-size:16px;text-decoration:none;padding:20px 44px;border:2px solid var(--mustard);transition:background .3s,color .3s;white-space:nowrap;}
+  .btn:hover{background:transparent;color:var(--mustard);}
+  .btn-note{font-size:12px;opacity:.7;margin-top:14px;}
+  @media(max-width:680px){.cta .wrap{grid-template-columns:1fr;}}
+
+  /* ---------- footer ---------- */
+  footer{padding:54px 0 70px;border-top:2px solid var(--ink);}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+  footer .name{font-family:var(--en);font-weight:800;font-size:24px;color:var(--evergreen);}
+  footer .name .dot{color:var(--mustard);}
+  footer .info{font-size:12.5px;color:var(--ink2);line-height:1.95;}
+  footer a{color:var(--evergreen);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="topbar">
+  <div class="row">
+    <div class="brandmark">mizube<span class="dot">.</span></div>
+    <div class="nav">SUMMER PROGRAM 2026</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="eyebrow rv">Mizube Summer School ・ 2026</div>
+        <h1 class="rv">「わからない」から、<br>はじまる<span class="hl">夏</span>。</h1>
+        <p class="lead rv">宿題が終わらない、自由研究が決まらない、夏休みでペースが崩れる——お子さんの「もやもや」を、急がず、ひとつずつ。<br>7/21〜8/29、3つの形でお待ちしています。</p>
+        <div class="tags rv">
+          <span class="tag fill">小1〜中3</span>
+          <span class="tag">鈴蘭台駅 徒歩3分</span>
+          <span class="tag">LINEで相談OK</span>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="facts">
+          <div class="fact term">
+            <span class="lbl">Term</span>
+            <span class="big">7.21<span class="sep">→</span>8.29</span>
+            <span class="sub">2026年・夏期</span>
+          </div>
+          <div class="fact">
+            <span class="lbl">For</span>
+            <span class="big">小1<span class="sep">〜</span>中3</span>
+            <span class="sub">学年で3コースに分かれます</span>
+          </div>
+          <div class="fact">
+            <span class="lbl">Min. Class</span>
+            <span class="big">6<span class="unit">名</span></span>
+            <span class="sub">学童は各パック先着・少人数</span>
+          </div>
+          <div class="fact cta">
+            <span class="lbl">Apply</span>
+            <span class="big">受付中</span>
+            <span class="sub">公式LINEで相談だけもOK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 悩み -->
+<section class="block">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="secnum rv">01</div>
+      <div class="meta">
+        <div class="label rv">The Voices</div>
+        <h2 class="rv">この夏、こんな声を<br>よく聞きます。</h2>
+        <p class="rv">毎年、6月のなかばあたりから増えてくる、保護者の方々のつぶやき。mizubeの夏は、その「もやもや」を一緒にほどく時間です。</p>
+      </div>
+    </div>
+    <div class="worry-grid rv">
+      <div class="worry-cell">
+        <span class="n">Voice 01 ・ 小3 – 小4 のお家</span>
+        <span class="t">「<em>宿題</em>、今年も<br>ちゃんと終わるかな…」</span>
+      </div>
+      <div class="worry-cell">
+        <span class="n">Voice 02 ・ はじめての夏</span>
+        <span class="t">「<em>自由研究</em>、何を<br>したらいいんやろう…」</span>
+      </div>
+      <div class="worry-cell">
+        <span class="n">Voice 03 ・ 小5以上 / 中学生</span>
+        <span class="t">「夏休み、勉強の<br><em>ペース</em>が崩れそう…」</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- mizubeの夏とは（番号なしインタールード） -->
+<section class="ethos">
+  <div class="wrap">
+    <div class="lbl rv">Mizube Way ・ 夏のスタンス</div>
+    <p class="ethos-quote rv">「わからない」と<br>素直に言える人が、<br>よく育つ。</p>
+    <p class="ethos-lead rv">mizubeの夏は、答えを急がず、つまずきの「もと」にゆっくり戻る時間。問いの形をやさしく整え直して、お子さんが「自分でわかった」と言える瞬間を、ひとつでも多く。</p>
+    <div class="ethos-pillars">
+      <div class="pillar rv">
+        <span class="p-lbl">01 / Pace</span>
+        <p>急がない。<br>わかるまで、待ちます。</p>
+      </div>
+      <div class="pillar rv">
+        <span class="p-lbl">02 / Question</span>
+        <p>答えより、問い。<br>「なんでやろう？」を一緒に。</p>
+      </div>
+      <div class="pillar rv">
+        <span class="p-lbl">03 / Detour</span>
+        <p>まわり道も、学び。<br>失敗をまるごと受けます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- コース -->
+<section class="block">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="secnum mustard rv">02</div>
+      <div class="meta">
+        <div class="label rv">Three Courses</div>
+        <h2 class="rv">「うちは、これだ」が<br>すぐ見つかる。</h2>
+      </div>
+    </div>
+
+    <div class="course k1 rv">
+      <div class="cnum">01</div>
+      <div class="body">
+        <span class="for">宿題・自由研究をまとめて見てほしい！</span>
+        <h3>小学生の学童</h3>
+        <div class="grade">Grade 3–4 ・ 各パック 先着6名</div>
+        <div class="row"><span class="lbl">Time</span><span>9:30 〜 15:30</span></div>
+        <div class="row packs">
+          <span class="lbl">Packs</span>
+          <div class="pack-list">
+            <div class="pack"><span class="pack-n">Pack A</span><span class="pack-d">7/21・22・23</span></div>
+            <div class="pack"><span class="pack-n">Pack B</span><span class="pack-d">8/3・4・5</span></div>
+            <div class="pack"><span class="pack-n">Pack C</span><span class="pack-d">8/17・18・19</span></div>
+          </div>
+        </div>
+        <div class="note">3日間まとめてのパック制。少人数だから、増やさずに、ていねいに見ます。</div>
+      </div>
+      <div class="price">（　）円<small>3日間パック</small></div>
+    </div>
+
+    <div class="course k2 rv">
+      <div class="cnum">02</div>
+      <div class="body">
+        <span class="for">毎日は難しいけど、宿題は終わらせたい！</span>
+        <h3>夏の課題お片付けコース</h3>
+        <div class="grade">Grade 1–6 ・ Drop-in</div>
+        <div class="row"><span class="lbl">Date</span><span>7/27（月）〜 31（金）</span></div>
+        <div class="row"><span class="lbl">Time</span><span>調整中（決まり次第ご案内します）</span></div>
+        <div class="row"><span class="lbl">Style</span><span>必要な日だけ。1日だけの参加も大歓迎です</span></div>
+        <div class="note">家だと進まない宿題も、自由研究の相談だけでも。はじめての方の入口にも。</div>
+      </div>
+      <div class="price">（　）円<small>1日あたり</small></div>
+    </div>
+
+    <div class="course k3 rv">
+      <div class="cnum">03</div>
+      <div class="body">
+        <span class="for">この夏に、勉強を立て直したい</span>
+        <h3>学習の夏期講習</h3>
+        <div class="grade">Grade 3 – JHS 3 ・ 特に小5以上</div>
+        <div class="row"><span class="lbl">Slot</span><span>11:00 〜 12:00 ／ 13:00 〜 14:00 ／ 14:15 〜 15:15</span></div>
+        <div class="row"><span class="lbl">Plan</span><span>一人ひとりに合わせて個別カスタマイズ。つまずきの“もと”を整理します</span></div>
+        <div class="note">量より、どこから崩れたかを言葉にする夏に。</div>
+        <div class="jhs3-note">中3にとって、この夏は大きな分かれ目です。</div>
+      </div>
+      <div class="price">（　）円<small>料金</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 選び方 -->
+<section class="block">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="secnum rv">03</div>
+      <div class="meta">
+        <div class="label rv">How to Choose</div>
+        <h2 class="rv">学年で選ぶ、<br>ひとつの目安。</h2>
+      </div>
+    </div>
+    <div class="guide rv">
+      <div class="g"><b>小3–4</b><span>夏休みまるごとなら①学童。宿題だけなら②お片付け。</span></div>
+      <div class="g"><b>小5–6</b><span>夏で差がつく時期。③学習でじっくり立て直しを。</span></div>
+      <div class="g"><b>中1–3</b><span>③学習が中心。中3は、この夏が大きな分かれ目です。</span></div>
+      <div class="g"><b>はじめて</b><span>②お片付けコースは、1日から気軽に試せます。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div>
+      <h2 class="rv">完璧な夏じゃなくていい。<br>「わからない」を<span class="hl">ひとつ</span>、<br>整理しにきませんか。</h2>
+      <p class="sub rv">お申し込み・ご相談、受付中です。迷ったら公式LINEでお気軽に。</p>
+    </div>
+    <div class="rv">
+      <!-- ▼ 申し込みボタン：飛び先が決まったら href="#" を差し替えてください ▼ -->
+      <a class="btn" href="#" id="apply-btn">夏期講習に申し込む →</a>
+      <div class="btn-note">※ボタンの飛び先は未設定です</div>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="name">mizube<span class="dot">.</span></div>
+    <div class="info">
+      学習塾・プログラミング・プロジェクト学習<br>
+      神戸市北区鈴蘭台南町6丁目13-14（神鉄「鈴蘭台駅」徒歩3分）<br>
+      お問い合わせ・体験は公式LINEへ ／ <a href="https://co-mizube.com/" target="_blank" rel="noopener">co-mizube.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs=new IntersectionObserver((es)=>{
+    es.forEach((e)=>{
+      if(e.isIntersecting){
+        const el=e.target,sibs=Array.from(el.parentElement.querySelectorAll('.rv'));
+        const i=sibs.indexOf(el);
+        el.style.transitionDelay=(i>=0?Math.min(i,5)*0.08:0)+'s';
+        el.classList.add('in');obs.unobserve(el);
+      }
+    });
+  },{threshold:0.12});
+  document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
